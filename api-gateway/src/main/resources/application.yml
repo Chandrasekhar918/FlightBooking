@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: flight-management
+          uri: http://localhost:9001/
+          predicates:
+            - Path=/flight/**
+        - id: booking-management
+          uri: http://localhost:9002/
+          predicates:
+            - Path=/booking/**
+        - id: payment-management
+          uri: http://localhost:9005/
+          predicates:
+            - Path=/payment/**
+        - id: checkin-management
+          uri: http://localhost:9004/
+          predicates:
+            - Path=/checkin/**
+       
+       
+      globalcors:
+       corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000/"
+            allowedMethods: "*"
+            allowedHeaders: "*"     
+            allow-credentials: true    
+server:
+  port: 8888
+
+ 
